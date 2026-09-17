@@ -1,0 +1,239 @@
+:root {
+  --bg: #0f1420;
+  --panel: #171e2c;
+  --panel-2: #1d2638;
+  --border: #2a3550;
+  --text: #e6ebf5;
+  --muted: #93a0b8;
+  --accent: #4f8cff;
+  --yes: #34d399;
+  --yes-bg: rgba(52, 211, 153, 0.12);
+  --no: #f87171;
+  --no-bg: rgba(248, 113, 113, 0.1);
+  --invalid-bg: rgba(248, 113, 113, 0.14);
+  --invalid-border: rgba(248, 113, 113, 0.55);
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 24px 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+header h1 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+}
+
+.subtitle {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.io {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
+}
+
+@media (max-width: 900px) {
+  .io {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pane {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;
+  overflow: hidden;
+}
+
+.pane-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel-2);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.pane-head label {
+  margin-right: auto;
+}
+
+textarea {
+  flex: 1;
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  padding: 14px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  min-height: 360px;
+}
+
+textarea::placeholder {
+  color: #5d6a85;
+}
+
+button.ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+button.ghost:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+button.ghost:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 13px;
+  padding: 24px;
+  text-align: center;
+}
+
+.invalid {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 18px;
+  border: 1px dashed var(--invalid-border);
+  background: var(--invalid-bg);
+  border-radius: 8px;
+  color: var(--no);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.summary b {
+  color: var(--text);
+}
+
+.summary .dot {
+  opacity: 0.5;
+}
+
+.yes-text {
+  color: var(--yes);
+}
+.no-text {
+  color: var(--no);
+}
+
+.table-scroll {
+  flex: 1;
+  overflow: auto;
+  min-height: 300px;
+}
+
+.result-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  border-bottom: 1px solid rgba(42, 53, 80, 0.45);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+}
+
+.result-row.yes {
+  color: var(--yes);
+  background: var(--yes-bg);
+}
+
+.result-row.no {
+  color: var(--no);
+  background: var(--no-bg);
+}
+
+.col-idx {
+  width: 72px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.col-target {
+  width: 110px;
+  font-weight: 700;
+  color: var(--text);
+  flex-shrink: 0;
+  text-align: right;
+  margin-right: 4px;
+}
+
+.col-flag {
+  letter-spacing: 0.4px;
+}
+
+footer {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}

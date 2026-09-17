@@ -1,0 +1,27 @@
+# 光学垫片可达性判定 —— 静态站点编排
+#
+# 启动 Web：
+#   docker compose up --build
+#   WEB_PORT=9000 docker compose up --build    # 覆盖宿主机端口
+#
+# 一次性验收（TypeScript 类型检查 + Vitest 精确性测试 + Vite 构建，结束即退出）：
+#   docker compose --profile verify run --rm verify
+
+services:
+  web:
+    build:
+      context: .
+    image: shim-reachability:latest
+    ports:
+      # 宿主机端口可用环境变量 WEB_PORT 覆盖，默认 8080
+      - "${WEB_PORT:-8080}:80"
+    restart: unless-stopped
+
+  verify:
+    # 一次性验收服务：跑完类型检查、全部单测与生产构建后退出（退出码即验收结论）
+    profiles: ["verify"]
+    image: node:20-alpine
+    working_dir: /app
+    command: sh -c "npm ci --no-audit --no-fund && npm run verify"
+    volumes:
+      - ./:/app
